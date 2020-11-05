@@ -1,5 +1,16 @@
 import java.util.*;
 public class TicTacToeGame {
+    static Scanner input = new Scanner(System.in);
+    static String userLetter;
+    static String computerLetter;
+    static Map<Integer,Boolean> visited = new HashMap<>();
+
+    static {
+        for(int index=1;index<10;index++){
+            visited.put(index,false);
+        }
+    }
+
     //UC1 initialize empty board when game is started
     public static char[] createBoard(){
         char[] board = new char[10];
@@ -11,7 +22,6 @@ public class TicTacToeGame {
 
     //UC2 Ability to choose user X or O
     public static String chooseUserLetter(){
-        Scanner input = new Scanner(System.in);
         String userLetter;
         do {
             System.out.println("please Choose Letter X or O");
@@ -40,10 +50,20 @@ public class TicTacToeGame {
         }
     }
 
+    //UC4 Ability to play game
+    public static void userTurnToPlaceElement(char[] board){
+        System.out.println("Specify the index to place element");
+        int index = input.nextInt();
+        board[index] = userLetter.charAt(0);
+        visited.put(index,true);
+        showCurrentBoard(board);
+    }
+
     public static void main(String[] args){
         char[] board = createBoard();
-        String userLetter = chooseUserLetter();
-        String computerLetter = generateComputerLetter(userLetter);
+        userLetter = chooseUserLetter();
+        computerLetter = generateComputerLetter(userLetter);
         showCurrentBoard(board);
+        userTurnToPlaceElement(board);
     }
 }
