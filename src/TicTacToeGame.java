@@ -1,7 +1,7 @@
 import java.util.*;
 public class TicTacToeGame {
     //UC1 initialize empty board when game is started
-    public static char[] startNewGame(){
+    public static char[] createBoard(){
         char[] board = new char[10];
         for(int index=1;index<board.length;index++) {
             board[index] = ' ';
@@ -21,21 +21,28 @@ public class TicTacToeGame {
     }
 
     //UC2 set the Computer letter
-    public static String setComputerLetter(String userLetter){
+    public static String generateComputerLetter(String userLetter){
         return (userLetter.equals("O")) ? "X" : "O";
     }
 
-    //UC3 show the board
-    public static void showBoard(char[] board){
-        for (char c : board) {
-            System.out.print(c + ",");
+    //UC3 show the current board
+    public static void showCurrentBoard(char[] board){
+        int row =3;
+        int column = 0;
+        for (int index=1;index<board.length;index++) {
+            System.out.print(board[index]+ ",");
+            column++;
+            if(column == row){
+                column=0;
+                System.out.println();
+            }
         }
     }
 
     public static void main(String[] args){
-        char[] board = startNewGame();
+        char[] board = createBoard();
         String userLetter = chooseUserLetter();
-        String computerLetter = setComputerLetter(userLetter);
-        showBoard(board);
+        String computerLetter = generateComputerLetter(userLetter);
+        showCurrentBoard(board);
     }
 }
