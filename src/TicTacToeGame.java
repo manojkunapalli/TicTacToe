@@ -13,7 +13,8 @@ public class TicTacToeGame {
     public static String chooseUserLetter(){
         Scanner input = new Scanner(System.in);
         System.out.println("User: Choose X or O");
-        return input.nextLine();
+        String userLetter = input.nextLine();
+        return userLetter.toUpperCase();
     }
 
     //UC2 set the Computer letter
