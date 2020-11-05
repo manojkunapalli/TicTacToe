@@ -27,6 +27,7 @@ public class TicTacToeGame {
 
     //UC3 show the current board
     public static void showCurrentBoard(char[] board){
+        System.out.println("***Current Board***");
         int row =3;
         int column = 0;
         for (int index=1;index<board.length;index++) {
