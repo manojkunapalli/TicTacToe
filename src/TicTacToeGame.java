@@ -12,8 +12,11 @@ public class TicTacToeGame {
     //UC2 Ability to choose user X or O
     public static String chooseUserLetter(){
         Scanner input = new Scanner(System.in);
-        System.out.println("User: Choose X or O");
-        String userLetter = input.nextLine();
+        String userLetter;
+        do {
+            System.out.println("please Choose Letter X or O");
+            userLetter = input.nextLine();
+        }while (!userLetter.equalsIgnoreCase("X") && !userLetter.equalsIgnoreCase("O"));
         return userLetter.toUpperCase();
     }
 
