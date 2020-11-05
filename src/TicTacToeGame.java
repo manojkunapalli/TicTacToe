@@ -31,7 +31,7 @@ public class TicTacToeGame {
         int row =3;
         int column = 0;
         for (int index=1;index<board.length;index++) {
-            System.out.print(board[index]+ ",");
+            System.out.print("["+board[index]+ "]");
             column++;
             if(column == row){
                 column=0;
