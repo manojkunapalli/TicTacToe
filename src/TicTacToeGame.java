@@ -22,15 +22,20 @@ public class TicTacToeGame {
 
     //UC2 set the Computer letter
     public static String setComputerLetter(String userLetter){
-        if(userLetter.equals("O")){
-            return "X";
+        return (userLetter.equals("O")) ? "X" : "O";
+    }
+
+    //UC3 show the board
+    public static void showBoard(char[] board){
+        for (char c : board) {
+            System.out.print(c + ",");
         }
-        return "O";
     }
 
     public static void main(String[] args){
         char[] board = startNewGame();
         String userLetter = chooseUserLetter();
         String computerLetter = setComputerLetter(userLetter);
+        showBoard(board);
     }
 }
