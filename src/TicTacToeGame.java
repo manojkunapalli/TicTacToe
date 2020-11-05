@@ -20,6 +20,11 @@ public class TicTacToeGame {
         return userLetter.toUpperCase();
     }
 
+    //UC2 set the Computer letter
+    public static String generateComputerLetter(String userLetter){
+        return (userLetter.equals("O")) ? "X" : "O";
+    }
+
     //UC3 show the current board
     public static void showCurrentBoard(char[] board){
         System.out.println("***Current Board***");
@@ -38,7 +43,7 @@ public class TicTacToeGame {
     public static void main(String[] args){
         char[] board = createBoard();
         String userLetter = chooseUserLetter();
-        String computerLetter = (userLetter.equals("O")) ? "X" : "O";
+        String computerLetter = generateComputerLetter(userLetter);
         showCurrentBoard(board);
     }
 }
