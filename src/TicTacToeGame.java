@@ -4,7 +4,7 @@ public class TicTacToeGame {
     static String userLetter;
     static String computerLetter;
     static Map<Integer,Boolean> visited = new HashMap<>();
-
+    static int count;
     static {
         for(int index=1;index<10;index++){
             visited.put(index,false);
@@ -52,18 +52,39 @@ public class TicTacToeGame {
 
     //UC4 Ability to play game
     public static void userTurnToPlaceElement(char[] board){
-        System.out.println("Specify the index to place element");
-        int index = input.nextInt();
+        int index = 0;
+        do{
+            System.out.println("Specify the index to place element");
+            index = input.nextInt();
+        }while(visited.get(index));
+
         board[index] = userLetter.charAt(0);
         visited.put(index,true);
         showCurrentBoard(board);
+        count++;
+        computerTurnToPlaceElement(board);
     }
 
+    //UC5 Computer Ability to play Game
+    public static void computerTurnToPlaceElement(char[] board){
+        for(int index=1;index<10;index++){
+            if(!visited.get(index)){
+                board[index] = computerLetter.charAt(0);
+                visited.put(index,true);
+                break;
+            }
+        }
+        count++;
+        showCurrentBoard(board);
+    }
     public static void main(String[] args){
         char[] board = createBoard();
         userLetter = chooseUserLetter();
         computerLetter = generateComputerLetter(userLetter);
         showCurrentBoard(board);
-        userTurnToPlaceElement(board);
+
+        while(count != 9){
+            userTurnToPlaceElement(board);
+        }
     }
 }
