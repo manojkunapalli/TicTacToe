@@ -5,6 +5,8 @@ public class TicTacToeGame {
     static String computerLetter;
     static Map<Integer,Boolean> visited = new HashMap<>();
     static int count;
+    static int turn;
+
     static {
         for(int index=1;index<10;index++){
             visited.put(index,false);
@@ -50,7 +52,7 @@ public class TicTacToeGame {
         }
     }
 
-    //UC4 Ability to play game
+    //UC4 Ability of user to play game
     public static void userTurnToPlaceElement(char[] board){
         int index = 0;
         do{
@@ -62,12 +64,12 @@ public class TicTacToeGame {
         visited.put(index,true);
         showCurrentBoard(board);
         count++;
-        if(count < 9) {
+        if(count < 9 && turn == 1) {
             computerTurnToPlaceElement(board);
         }
     }
 
-    //UC5 Computer Ability to play Game
+    //UC5 Computer Ability of computer to play Game
     public static void computerTurnToPlaceElement(char[] board){
         for(int index=1;index<10;index++){
             if(!visited.get(index)){
@@ -78,16 +80,42 @@ public class TicTacToeGame {
         }
         count++;
         showCurrentBoard(board);
+        if(count < 9 && turn == 2) {
+            userTurnToPlaceElement(board);
+        }
+    }
+
+    //UC7- choose the turn
+    public static int chooseTheTurn(){
+        int turn;
+        do{
+            System.out.println("Please choose the turn \n1.User\n2.Computer");
+            turn = input.nextInt();
+        }while (turn != 1 && turn != 2);
+        return turn;
+    }
+
+    //UC7 - choose the turn - start the game
+    public static void startGame(int turn,char[] board){
+        if(turn == 1){
+            while(count < 9){
+                System.out.println("count = "+count);
+                userTurnToPlaceElement(board);
+            }
+        }else{
+            while(count < 9){
+                System.out.println("count = "+count);
+                computerTurnToPlaceElement(board);
+            }
+        }
+
     }
     public static void main(String[] args){
         char[] board = createBoard();
+        turn = chooseTheTurn();
         userLetter = chooseUserLetter();
         computerLetter = generateComputerLetter(userLetter);
         showCurrentBoard(board);
-
-        while(count < 9){
-            System.out.println("count = "+count);
-            userTurnToPlaceElement(board);
-        }
+        startGame(turn,board);
     }
 }
