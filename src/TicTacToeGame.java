@@ -56,13 +56,15 @@ public class TicTacToeGame {
         do{
             System.out.println("Specify the index to place element");
             index = input.nextInt();
-        }while(visited.get(index));
+        }while(visited.get(index) && count <= 9);
 
         board[index] = userLetter.charAt(0);
         visited.put(index,true);
         showCurrentBoard(board);
         count++;
-        computerTurnToPlaceElement(board);
+        if(count < 9) {
+            computerTurnToPlaceElement(board);
+        }
     }
 
     //UC5 Computer Ability to play Game
@@ -83,7 +85,8 @@ public class TicTacToeGame {
         computerLetter = generateComputerLetter(userLetter);
         showCurrentBoard(board);
 
-        while(count != 9){
+        while(count < 9){
+            System.out.println("count = "+count);
             userTurnToPlaceElement(board);
         }
     }
